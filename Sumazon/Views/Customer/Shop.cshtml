@@ -1,0 +1,77 @@
+﻿@model Sumazon.Models.Product
+@{
+    if (Session.IsNewSession || Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<h2>Shop</h2>
+
+<table id="ShopInventory" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Purchase</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#ShopInventory").DataTable({
+                ajax: {
+                    url: "../Customer/ConvertInventory/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Id"
+                    },
+                    {
+                        data: "Name"
+                    },
+                    {
+                        data: "Category"
+                    },
+                    {
+                        data: "Price"
+                    },
+                    {
+                        data: "Id",
+                        render: function (data) {
+                            return "<button class='btn-link js-add' data-product-Id=" + data + ">Add to Cart</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#ShopInventory").on("click", ".js-add", function () {
+                var button = $(this);
+
+                bootbox.prompt({
+                    title: "Please Enter Quantity...",
+                    callback: function (result) {
+                            $.ajax({
+                                url: "../Customer/AddToCart/" + button.attr("data-product-Id") + result,
+                                success: function () {
+                                    console.log("Success");
+                                    //table.row(button.parents("tr")).remove().draw();
+                                }
+                            });// call api using jquery ajax
+                    }
+                });
+
+            });
+        });
+
+    </script>
+}

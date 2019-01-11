@@ -1,0 +1,40 @@
+﻿@model Sumazon.Models.User
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Sumazon</h1>
+    <p class="lead">Isse Sasta Aur Kahan..</p>
+    @using (Html.BeginForm("VerifyUser", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Please Login</h4>
+        <div class="bs-example" style="2px solid gray">
+            <div class="form-group">
+                <label>User Name: </label>
+                @Html.EditorFor(model => model.Name)*
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                @Html.EditorFor(model => model.Password) *
+                @Html.ValidationMessageFor(model => model.Password)
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+                @Html.ActionLink("New User?","Register", "Home")
+            </div>
+            
+        </div>
+    }
+        <div class="row">
+
+        </div>
+    </div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");    
+}

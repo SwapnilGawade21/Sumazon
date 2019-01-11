@@ -1,0 +1,17 @@
+﻿
+@{
+    if (Session.IsNewSession || Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    else
+    {
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+
+        <h2>Welcome @Session["userName"].ToString()</h2>
+        
+    }
+}
+

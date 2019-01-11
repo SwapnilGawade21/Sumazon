@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Sumazon.Models.Order>
+
+@{
+    if (Session.IsNewSession || Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Orders</h2>
+
+<table id="adminOrders" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>Customer Name</th>
+            <th>Product Name</th>
+            <th>Quantity Sold</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#adminOrders").DataTable({
+                ajax: {
+                    url: "../Admin/ConvertOrders/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Id"
+                    },
+                    {
+                        data: "UserName"
+                    },
+                    {
+                        data: "ProductName"
+                    },
+                    {
+                        data: "Quantity",
+                    }
+                ]
+            });
+
+
+        });
+
+    </script>
+}

@@ -1,0 +1,19 @@
+﻿
+@{
+    if (Session.IsNewSession || Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    else
+    {
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+<div class="row">
+    <h2>Welcome @Session["userName"].ToString()</h2>
+    <div class="col-md-3"></div>
+    <img class="col-md-6" src="~/Images/ecommerce-dev.png" />
+    <div class="col-md-3"></div>
+</div>
+     }
+
+ }

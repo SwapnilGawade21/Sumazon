@@ -1,0 +1,46 @@
+﻿@model Sumazon.Models.Product
+@{
+    if (Session.IsNewSession || Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>New</h2>
+
+<div class="jumbotron">
+    @using (Html.BeginForm("Add", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Please Enter Your Details</h4>
+        <div class="bs-example" style="2px solid gray">
+            <div class="form-group">
+                <label>Product Name: </label>
+                @Html.EditorFor(model => model.Name)*
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class="form-group">
+                <label>Product Category: </label>
+                @Html.DropDownList("cid", "Select Category")
+                @*@Html.DropDownList("items", ViewBag.items as IEnumerable<SelectListItem> );*@
+                @Html.ValidationMessageFor(model => model.Category)
+            </div>
+            <div class="form-group">
+                <label>Price:</label>
+                @Html.EditorFor(model => model.Price)*
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+}

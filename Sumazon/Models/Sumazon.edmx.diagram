@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b8976c03a429467e8b979c3fb5ca81bf" Name="Diagram1">
+        <EntityTypeShape EntityType="ECommerceModel.Category" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Order" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Product" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Role" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.User" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="ECommerceModel.FK_Product_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.FK_Orders_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.FK_Orders_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.FK_Users_ToTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ECommerceModel.Cart" Width="1.5" PointX="5.875" PointY="4.625" />
+        <AssociationConnector Association="ECommerceModel.FK_Cart_ToTable" />
+        <AssociationConnector Association="ECommerceModel.FK_Cart_ToTable_1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
